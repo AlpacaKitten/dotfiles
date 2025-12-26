@@ -2,7 +2,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
+    "height": 10, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
@@ -19,8 +19,7 @@
         "pulseaudio",
         "network",
         "power-profiles-daemon",
-        "cpu",
-        "memory",
+        "group/hardware",
         "backlight",
         "battery",
         "battery#bat2",
@@ -29,22 +28,22 @@
         "custom/power"
     ],
     // Modules configuration
-    // "sway/workspaces": {
+     "sway/workspaces": {
     //     "disable-scroll": true,
     //     "all-outputs": true,
     //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
+         "format": "{icon}",
+         "format-icons": {
     //         "1": "",
     //         "2": "",
     //         "3": "",
     //         "4": "",
     //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+     //        "urgent": "",
+            "focused": "",
+         //    "default": ""
+         }
+     },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -108,14 +107,28 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%d.%m.%Y}"
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+      "on-click": "alacritty -e btop"
     },
+    "custom/seperator" :{
+      "format": " | ",
+  },
+    "group/hardware":{
+      "orientation": "horizontal",
+      "modules": [
+        "cpu",
+        "custom/seperator",
+        "memory",
+    ] 
+    },
+
     "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+    "on-click": "alacritty -e btop"
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -158,7 +171,8 @@
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "on-click": "alacritty -e nmtui"
+
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float

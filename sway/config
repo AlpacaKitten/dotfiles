@@ -65,6 +65,13 @@ output * bg /usr/share/backgrounds/sway/ducko1.jpg fill
 #
 # Basics:
 #
+
+    # poweroff on command
+    bindsym $mod+space+q exec poweroff
+
+    # lock screen 
+    bindsym $mod+l exec swaylock
+    
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -73,6 +80,9 @@ output * bg /usr/share/backgrounds/sway/ducko1.jpg fill
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Start Browser
+    bindsym $mod+b exec firefox
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -93,12 +103,12 @@ output * bg /usr/share/backgrounds/sway/ducko1.jpg fill
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+   # bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+   # bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -140,13 +150,17 @@ output * bg /usr/share/backgrounds/sway/ducko1.jpg fill
 #
 # Layout stuff:
 #
+
+# enables autotiling script
+    exec_always autotiling
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
+    bindsym $mod+c splith
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
+    bindsym $mod+w layout default
     bindsym $mod+s layout stacking
     bindsym $mod+e layout toggle split
 
@@ -220,7 +234,7 @@ bar {
 }
 
 # Windows have no top border, 1 Pixel in beteen them
-default_border pixel 1
+default_border none
 gaps inner 1
 gaps outer 1
 

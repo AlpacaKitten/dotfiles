@@ -3,14 +3,16 @@
     /* `otf-font-awesome` is required to be installed for icons */
     border: none;
     border-radius: 2px;
-    font-family:"Iosevka";
-    font-size: 13px;
+    font-family:"M+CodeLat60 Nerd Font Mono";
+    font-size: 11px;
+    min-height: 0;
 }
 
 window#waybar {
+    background-color: rgba(0, 0,0,0.1);
     padding: 0;
     margin: 0;
-    background-color: rgba(0, 0,0,0.2);
+
     
     color: #ffffff;
     /*transition-property: background-color;*/
@@ -18,79 +20,16 @@ window#waybar {
     border-radius: 0px;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
 
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: #a37800;
-}
-
-#workspaces button {
-    padding: 4 4px;
-    background-color: transparent;
-    color: #ffffff;
-}
-
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
 
 #clock,
 #battery,
-#cpu,
-#memory,
 #disk,
 #temperature,
 #backlight,
 #network,
+#hardware,
 #pulseaudio,
 #wireplumber,
 #custom-media,
@@ -100,28 +39,56 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 4 4px;
+    margin: 1px 1px 1px 1px;
+    min-width: 9px;
+    padding: 0 9px;
+    border-radius: 15px;
     color: #333333;
+    background-color: #1295c3;
 }
 
 #window,
 #workspaces {
-    margin: 0 4px;
+    background: rgba(0,0,0,0.4);
+    border-radius:15px;
+    margin: 2px 2px;
+    padding: 1px 9px;
+
+}
+#workspaces button {
+  color: #B5E8E0;
+  background: transparent;
+  padding: 2px 2px;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+}
+#workspaces button.occupied {
+  color: #A6E3A1;
+}
+#workspaces button.active {
+  color: #89B4FA;
+  text-shadow: 0 0 4px #ABE9B3;
+}
+workspaces button:hover{
+  background-color: #89B4FA;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
+
+/* If workspaces is the leftmost module, add left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+    margin-left: 5;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
+/* If workspaces is the rightmost module, add right margin */
 .modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+    margin-right: 5;
 }
 
 #clock {
     background-color: #e1e99c;
-}i
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+}
 
 #battery.discharging #battery.unplugged {
     background-color: #1295c3;
@@ -140,16 +107,6 @@ button:hover {
     }
 }
 
-/* Using steps() instead of linear as a timing function to limit cpu a 
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}*/
 
 #power-profiles-daemon {
     padding-right: 15px;
@@ -174,13 +131,12 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu {
-    background-color: #7cc3bb;
-    color: #000000;
+#hardware{
+  background-color: #7cc3bb;
 }
 
-#memory {
-    background-color: #d8eca4;
+#cpu{
+  padding-left: 5px;
 }
 
 #disk {
@@ -232,16 +188,9 @@ label:focus {
     background-color: #ffa000;
 }
 
-#temperature {
-    background-color: #f0932b;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
 
 #tray {
-    background-color: #2980b9;
+    background-color: #a9d8cd;
 }
 
 #tray > .passive {
@@ -279,37 +228,8 @@ label:focus {
     background-color: #51a37a;
 }
 
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
 
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
 
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-	background-color: transparent;
-}
 
 #privacy {
     padding: 0;
